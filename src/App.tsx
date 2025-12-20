@@ -1,8 +1,10 @@
+import { Navbar } from "./components";
+
 const App = () => {
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline">welcome to my portfolio</h1>
-    </div>
+    <main>
+      <Navbar />
+    </main>
   );
 };
 
