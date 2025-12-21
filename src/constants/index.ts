@@ -1,4 +1,21 @@
-const navLinks = [
+export type WindowKey =
+  | "finder"
+  | "contact"
+  | "resume"
+  | "safari"
+  | "photos"
+  | "terminal"
+  | "txtfile"
+  | "imgfile"
+  | "trash";
+
+type NavLink = {
+  id: number;
+  name: string;
+  type: WindowKey;
+};
+
+const navLinks: NavLink[] = [
   {
     id: 1,
     name: "Projects",
@@ -34,17 +51,6 @@ const navIcons = [
     img: "/icons/mode.svg",
   },
 ];
-
-export type WindowKey =
-  | "finder"
-  | "contact"
-  | "resume"
-  | "safari"
-  | "photos"
-  | "terminal"
-  | "txtfile"
-  | "imgfile"
-  | "trash";
 
 type DockApp = {
   id: WindowKey;
