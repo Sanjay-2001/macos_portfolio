@@ -239,7 +239,36 @@ export {
   gallery,
 };
 
-const WORK_LOCATION = {
+export type FileType = "txt" | "img" | "pdf" | "url" | "fig";
+
+export type FileSystemItem = {
+  id: number;
+  name: string;
+  icon: string;
+  kind: "folder" | "file";
+  position?: string;
+  windowPosition?: string;
+  fileType?: FileType;
+  href?: string;
+  imageUrl?: string;
+  subtitle?: string;
+  image?: string;
+  description?: string[];
+  children?: FileSystemItem[];
+};
+
+export type LocationKey = "work" | "about" | "resume" | "trash";
+
+export type LocationData = {
+  id: number;
+  type: LocationKey;
+  name: string;
+  icon: string;
+  kind: "folder";
+  children: FileSystemItem[];
+};
+
+const WORK_LOCATION: LocationData = {
   id: 1,
   type: "work",
   name: "Work",
@@ -407,7 +436,7 @@ const WORK_LOCATION = {
   ],
 };
 
-const ABOUT_LOCATION = {
+const ABOUT_LOCATION: LocationData = {
   id: 2,
   type: "about",
   name: "About me",
@@ -460,7 +489,7 @@ const ABOUT_LOCATION = {
   ],
 };
 
-const RESUME_LOCATION = {
+const RESUME_LOCATION: LocationData = {
   id: 3,
   type: "resume",
   name: "Resume",
@@ -479,7 +508,7 @@ const RESUME_LOCATION = {
   ],
 };
 
-const TRASH_LOCATION = {
+const TRASH_LOCATION: LocationData = {
   id: 4,
   type: "trash",
   name: "Trash",
@@ -507,7 +536,7 @@ const TRASH_LOCATION = {
   ],
 };
 
-export const locations = {
+export const locations: Record<LocationKey, LocationData> = {
   work: WORK_LOCATION,
   about: ABOUT_LOCATION,
   resume: RESUME_LOCATION,
