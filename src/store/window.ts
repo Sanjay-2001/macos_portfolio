@@ -1,22 +1,11 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
-import { INITIAL_Z_INDEX, WINDOW_CONFIG } from "../constants";
-
-type WindowKey =
-  | "finder"
-  | "contact"
-  | "resume"
-  | "safari"
-  | "photos"
-  | "terminal"
-  | "txtfile"
-  | "imgfile";
-
-type WindowState<T = unknown> = {
-  isOpen: boolean;
-  zIndex: number;
-  data: T | null;
-};
+import {
+  INITIAL_Z_INDEX,
+  WINDOW_CONFIG,
+  type WindowKey,
+  type WindowState,
+} from "../constants";
 
 type WindowStore = {
   windows: Record<WindowKey, WindowState>;
@@ -34,6 +23,7 @@ const useWindowStore = create<WindowStore>()(
     openWindow: (windowKey, data = null) =>
       set((state) => {
         const win = state.windows[windowKey];
+        if (!win) return;
         win.isOpen = true;
         win.zIndex = state.nextZIndex;
         win.data = data ?? win.data;
@@ -42,6 +32,7 @@ const useWindowStore = create<WindowStore>()(
     closeWindow: (windowKey) =>
       set((state) => {
         const win = state.windows[windowKey];
+        if (!win) return;
         win.isOpen = false;
         win.zIndex = INITIAL_Z_INDEX;
         win.data = null;
@@ -49,6 +40,7 @@ const useWindowStore = create<WindowStore>()(
     focusWindow: (windowKey) =>
       set((state) => {
         const win = state.windows[windowKey];
+        if (!win) return;
         win.zIndex = state.nextZIndex++;
       }),
   }))
