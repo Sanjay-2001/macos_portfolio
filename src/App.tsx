@@ -1,6 +1,6 @@
 import { Draggable } from "gsap/Draggable";
 import gsap from "gsap";
-import { Dock, Navbar, Welcome } from "./components";
+import { Dock, Home, Navbar, Welcome } from "./components";
 import {
   Contact,
   Finder,
@@ -26,6 +26,7 @@ const App = () => {
       <Text />
       <Image />
       <Contact />
+      <Home />
     </main>
   );
 };
