@@ -5,6 +5,7 @@ import {
   locations,
   type FileSystemItem,
   type LocationData,
+  type WindowKey,
 } from "../constants";
 import useLocationStore from "../store/location";
 import clsx from "clsx";
@@ -19,6 +20,8 @@ const Finder = () => {
     if (item.kind && item.kind === "folder") return setActiveLocation(item);
     if (item.fileType && ["fig", "url"].includes(item.fileType) && item.href)
       return window.open(item.href, "_blank");
+    if (item.fileType && item.kind)
+      return openWindow(`${item.fileType}${item.kind}` as WindowKey, item);
   };
 
   const renderList = (
