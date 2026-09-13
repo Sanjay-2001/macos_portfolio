@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { locations, type FileSystemItem, type WindowKey } from "../constants";
+import { locations, type FileSystemItem } from "../constants";
 import { useGSAP } from "@gsap/react";
 import { Draggable } from "gsap/Draggable";
 import useWindowStore from "../store/window";
